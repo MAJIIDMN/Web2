@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibrantMart - Your Joyful Shopping Experience</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom scrollbar for the product carousel */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+</head>
+<body class="font-sans antialiased bg-gradient-to-br from-purple-100 via-pink-100 to-yellow-100 text-gray-800">
+
+    <header class="bg-white shadow-lg py-4 px-6 md:px-12 flex items-center justify-between fixed top-0 left-0 w-full z-50">
+        <div class="flex items-center space-x-4">
+            <a href="#" class="text-3xl font-extrabold text-indigo-600 hover:text-indigo-800 transition duration-300">VibrantMart</a>
+        </div>
+
+        <nav class="hidden md:flex space-x-8 text-lg font-medium">
+            <a href="#" class="text-gray-700 hover:text-indigo-600 transition duration-300">Home</a>
+            <a href="#" class="text-gray-700 hover:text-indigo-600 transition duration-300">Shop</a>
+            <a href="#" class="text-gray-700 hover:text-indigo-600 transition duration-300">About Us</a>
+            <a href="#" class="text-gray-700 hover:text-indigo-600 transition duration-300">Contact</a>
+        </nav>
+
+        <div class="md:hidden flex items-center space-x-6">
+            <button id="menu-toggle" class="text-gray-700 text-2xl focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <div class="flex items-center space-x-6">
+            <div class="relative hidden md:block">
+                <input type="text" id="search-input" placeholder="Search products..." class="py-2 pl-10 pr-4 rounded-full bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 text-gray-700 text-base">
+                <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+            </div>
+            <a href="#" class="relative text-gray-700 hover:text-indigo-600 transition duration-300 text-2xl">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">3</span>
+            </a>
+        </div>
+    </header>
+
+    <nav id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-indigo-600 transform -translate-x-full transition-transform duration-300 ease-in-out z-40 md:hidden">
+        <div class="p-6 flex justify-end">
+            <button id="close-menu" class="text-white text-3xl focus:outline-none">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul class="flex flex-col items-center justify-center h-[calc(100%-80px)] space-y-8 text-2xl font-bold text-white">
+            <li><a href="#" class="hover:text-indigo-200 transition duration-300">Home</a></li>
+            <li><a href="#" class="hover:text-indigo-200 transition duration-300">Shop</a></li>
+            <li><a href="#" class="hover:text-indigo-200 transition duration-300">About Us</a></li>
+            <li><a href="#" class="hover:text-indigo-200 transition duration-300">Contact</a></li>
+            <li class="relative w-2/3 mt-8">
+                <input type="text" id="mobile-search-input" placeholder="Search products..." class="w-full py-3 pl-12 pr-4 rounded-full bg-indigo-500 border border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-300 text-white placeholder-indigo-200 text-lg">
+                <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-indigo-200"></i>
+            </li>
+        </ul>
+    </nav>
+
+
+    <main class="pt-28 pb-16 px-6 md:px-12 min-h-screen">
+        <section class="mb-16">
+            <h2 class="text-4xl font-extrabold text-center text-indigo-700 mb-10 leading-tight">Discover Our Colorful Collection!</h2>
+            <p class="text-xl text-center text-gray-600 max-w-3xl mx-auto mb-12">
+                Explore a world of vibrant products designed to bring joy and color to your life. From stylish accessories to unique home decor, we have something for everyone.
+            </p>
+
+            <div class="relative">
+                <div id="product-carousel" class="flex overflow-x-scroll no-scrollbar snap-x snap-mandatory space-x-6 py-4 px-2 -mx-2 md:space-x-8 md:px-0 md:-mx-0">
+                    </div>
+
+                <button id="prev-btn" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-75 rounded-full p-3 shadow-lg hover:bg-opacity-100 transition duration-300 text-indigo-600 focus:outline-none hidden md:block">
+                    <i class="fas fa-chevron-left text-2xl"></i>
+                </button>
+                <button id="next-btn" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-75 rounded-full p-3 shadow-lg hover:bg-opacity-100 transition duration-300 text-indigo-600 focus:outline-none hidden md:block">
+                    <i class="fas fa-chevron-right text-2xl"></i>
+                </button>
+            </div>
+        </section>
+
+        <section class="text-center mt-20">
+            <h3 class="text-3xl font-bold text-indigo-700 mb-8">Ready to add some color to your life?</h3>
+            <div class="flex flex-col md:flex-row justify-center space-y-6 md:space-y-0 md:space-x-8">
+                <a href="#" class="bg-green-500 hover:bg-green-600 text-white text-xl font-semibold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition duration-300">Shop All Products</a>
+                <a href="#" class="bg-yellow-500 hover:bg-yellow-600 text-white text-xl font-semibold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition duration-300">Explore New Arrivals</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8 px-6 md:px-12 text-center">
+        <div class="mb-4">
+            <h4 class="text-xl font-bold text-indigo-300 mb-2">VibrantMart</h4>
+            <p class="text-gray-400">Your one-stop shop for joyful and colorful products.</p>
+        </div>
+        <div class="flex flex-wrap justify-center space-x-6 mb-4 text-gray-400">
+            <a href="#" class="hover:text-white transition duration-300">Privacy Policy</a>
+            <a href="#" class="hover:text-white transition duration-300">Terms of Service</a>
+            <a href="#" class="hover:text-white transition duration-300">FAQ</a>
+        </div>
+        <p class="text-gray-500 text-sm">&copy; 2025 VibrantMart. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
